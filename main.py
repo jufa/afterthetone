@@ -14,6 +14,7 @@ class AnsweringMachine():
     self.heartbeat_period = 60 / self.debounce_period
     self.heartbeat_countdown = 0
     self.hook_pin = 21
+    self.call_start_time = 0
 
   def heartbeat(self):
     self.heartbeat_countdown -= 1
@@ -36,9 +37,10 @@ class AnsweringMachine():
   def start_recording(self):
     if self.state == 'recording':
       return 0
-    self.state == 'recording'
+    self.state = 'recording'
 
     self.log('recording...')
+    self.call_start_time = int(datetime.now().timestamp())
     try:
       file_ts = datetime.now().strftime("%Y-%m-%dT%Hh%Ms%S")
     except:
@@ -57,23 +59,24 @@ class AnsweringMachine():
     self.stream.start_stream()
 
   def stop_recording(self):
+    self.log('stopping recording...')
+    call_duration = 'WARNING: could not determine message duration'
+    try:
+      call_duration = int(datetime.now().timestamp()) - self.call_start_time
+    except:
+      pass
+
     self.stream.stop_stream()
     self.stream.close()
     self.wf.close()
 
     self.state == 'ready'
     self.log("recording stopped")
+    self.log(f'MESSAGE LEFT: {call_duration} seconds long')
 
-  # def toggle_recording(self):
-  #   if self.currently_recording:
-  #     self.stop_recording()
-  #     self.currently_recording = False
-  #   else:
-  #     self.play_file('sample.wav') # play intro
-  #     self.start_recording() # record
-  #     self.currently_recording = True
 
   def handle_on_the_hook(self):
+    self.log(f'on the hook, current state {self.state}')
     if self.state == 'recording':
       self.stop_recording()
     elif self.state == 'playback':
@@ -99,7 +102,7 @@ class AnsweringMachine():
       self.toggle_recording()
 
   def start(self):
-    self.log('AfterTone Starting up...')
+    self.log('\nAfterTone Starting up...')
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(self.hook_pin, GPIO.IN, GPIO.PUD_UP)
 
@@ -131,7 +134,7 @@ class AnsweringMachine():
       self.heartbeat()
       hook_state = GPIO.input(self.hook_pin)
       if hook_state != prev_hook_state:
-        print(f'hook state change: on the hook? {hook_state == on_the_hook}')
+        self.log(f'hook state change: on the hook? {hook_state == on_the_hook}')
         if hook_state == on_the_hook:
           self.handle_on_the_hook()
         else:
@@ -146,11 +149,11 @@ class AnsweringMachine():
     self.stream.close()
     self.wf.close()
     self.state = 'ready'
-    print("playback stopped")
+    self.log("playback stopped")
 
 
   def play_file(self, file):
-    print(f'playing {file}')
+    self.log(f'playing {file}')
     self.state = 'playback'
     # Set chunk size of 1024 samples per data frame
     chunk = 1024  
@@ -177,6 +180,7 @@ class AnsweringMachine():
     # Close and terminate the stream
     self.stream.close()
     self.log('playback complete')
+    self.state = 'ready'
 
 
   def log(self, msg):
