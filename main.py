@@ -15,6 +15,7 @@ class AnsweringMachine():
     self.heartbeat_countdown = 0
     self.hook_pin = 21
     self.call_start_time = 0
+    self.delay_before_message_playback = 1.5 # seconds
 
   def heartbeat(self):
     self.heartbeat_countdown -= 1
@@ -90,17 +91,6 @@ class AnsweringMachine():
       self.start_recording() # record
 
 
-  def on_press(self, key):
-    self.log('{0} pressed'.format(key))
-
-
-  def on_release(self, key):
-    self.log('{0} release'.format(key))
-    if key == Key.esc:
-      return False
-    if key.char == ('r'):
-      self.toggle_recording()
-
   def start(self):
     self.log('\nAfterTone Starting up...')
     GPIO.setmode(GPIO.BCM)
@@ -155,6 +145,11 @@ class AnsweringMachine():
   def play_file(self, file):
     self.log(f'playing {file}')
     self.state = 'playback'
+    try:
+      time.sleep(self.delay_before_message_playback)
+    except:
+      self.log('WARNING: delay_before_message_playback raised exception')
+      
     # Set chunk size of 1024 samples per data frame
     chunk = 1024  
 
