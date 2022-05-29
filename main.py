@@ -5,11 +5,33 @@ import RPi.GPIO as GPIO
 import time
 import random
 
+
+class StateMachine():
+  def __init__(self, valid_states=None, log=None):
+    self._valid_states = valid_states
+    self._state = None
+    self._log = log
+
+  def current(self, match):
+    return self._state == match
+
+  def set(self, new_state):
+    try:        
+      if new_state in self._valid_states:
+        self._log(f'[state change] {self._state} to {new_state}')
+        self._state = new_state
+      else:
+        self._log(f'WARNING unknown state change: {self._state} to {new_state}: {new_state} not in {self._valid_states}')
+    except:
+      print('StateMachine: exception during set state')
+    
+
+
+
 class AnsweringMachine():
 
-
   def __init__(self):
-    self.state = 'ready'
+    self.valid_states = 'ready recording playback'.split(' ')
     self.debounce_period = 0.2 #sec
     self.heartbeat_period = 60 / self.debounce_period
     self.heartbeat_countdown = 0
@@ -36,11 +58,10 @@ class AnsweringMachine():
     return (data, pyaudio.paContinue)
 
   def start_recording(self):
-    if self.state == 'recording':
+    if self.sm.current('recording'):
       return 0
-    self.state = 'recording'
+    self.sm.set('recording')
 
-    self.log('recording...')
     self.call_start_time = int(datetime.now().timestamp())
     try:
       file_ts = datetime.now().strftime("%Y-%m-%dT%Hh%Ms%S")
@@ -71,28 +92,32 @@ class AnsweringMachine():
     self.stream.close()
     self.wf.close()
 
-    self.state == 'ready'
+    self.sm.set('ready')
     self.log("recording stopped")
     self.log(f'MESSAGE LEFT: {call_duration} seconds long')
 
 
   def handle_on_the_hook(self):
-    self.log(f'on the hook, current state {self.state}')
-    if self.state == 'recording':
+    self.log(f'on the hook')
+    if self.sm.current('recording'):
       self.stop_recording()
-    elif self.state == 'playback':
+    elif self.sm.current('playback'):
       self.stop_playback()
     else:
-      self.state = 'ready'
+      self.sm.set('ready')
 
   def handle_off_the_hook(self):
-    if self.state == 'ready':
+    if self.sm.current('ready'):
       self.play_file('sample.wav') # play intro
       self.start_recording() # record
 
 
   def start(self):
     self.log('\nAfterTone Starting up...')
+
+    self.sm = StateMachine(valid_states=self.valid_states, log=self.log)
+    self.sm.set('ready')
+
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(self.hook_pin, GPIO.IN, GPIO.PUD_UP)
 
@@ -138,13 +163,13 @@ class AnsweringMachine():
     self.stream.stop_stream()
     self.stream.close()
     self.wf.close()
-    self.state = 'ready'
+    self.sm.set('ready')
     self.log("playback stopped")
 
 
   def play_file(self, file):
     self.log(f'playing {file}')
-    self.state = 'playback'
+    self.sm.set('playback')
     try:
       time.sleep(self.delay_before_message_playback)
     except:
@@ -167,7 +192,7 @@ class AnsweringMachine():
     data = wf.readframes(chunk)
 
     # Play the sound by writing the audio data to the stream
-    while data and self.state == 'playback': # need threads to make this work!
+    while data and self.sm.current('playback'): # need threads to make this work!
       self.stream.write(data)
       data = wf.readframes(chunk)
 
@@ -175,7 +200,7 @@ class AnsweringMachine():
     # Close and terminate the stream
     self.stream.close()
     self.log('playback complete')
-    self.state = 'ready'
+    self.sm.set('ready')
 
 
   def log(self, msg):

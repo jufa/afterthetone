@@ -314,3 +314,155 @@ Press <r> to record audio. ESC to quit
 2022-05-28T22h39s40		recording stopped
 2022-05-28T22h39s40		MESSAGE LEFT: 10 seconds long
 2022-05-28T22h40s27		HEARTBEAT
+2022-05-28T23h27s03		state change: {self._state} to {new_state}
+2022-05-28T23h27s03		
+AfterTone Starting up...
+Press <r> to record audio. ESC to quit
+(0, 'bcm2835 Headphones: - (hw:0,0)', 0)
+(1, 'UAC 1.0 Microphone: USB Audio (hw:1,0)', 1)
+(2, 'sysdefault', 0)
+(3, 'lavrate', 0)
+(4, 'samplerate', 0)
+(5, 'speexrate', 0)
+(6, 'upmix', 0)
+(7, 'vdownmix', 0)
+(8, 'default', 0)
+(9, 'dmix', 0)
+2022-05-28T23h27s03		setup complete...
+2022-05-28T23h27s03		starting monitoring loop...
+2022-05-28T23h27s03		HEARTBEAT
+2022-05-28T23h28s02		
+AfterTone Starting up...
+2022-05-28T23h28s57		
+AfterTone Starting up...
+2022-05-28T23h28s57		state change: {self._state} to {new_state}
+Press <r> to record audio. ESC to quit
+(0, 'bcm2835 Headphones: - (hw:0,0)', 0)
+(1, 'UAC 1.0 Microphone: USB Audio (hw:1,0)', 1)
+(2, 'sysdefault', 0)
+(3, 'lavrate', 0)
+(4, 'samplerate', 0)
+(5, 'speexrate', 0)
+(6, 'upmix', 0)
+(7, 'vdownmix', 0)
+(8, 'default', 0)
+(9, 'dmix', 0)
+2022-05-28T23h28s58		setup complete...
+2022-05-28T23h28s58		starting monitoring loop...
+2022-05-28T23h28s58		HEARTBEAT
+2022-05-28T23h29s58		HEARTBEAT
+2022-05-28T23h30s41		
+AfterTone Starting up...
+2022-05-28T23h31s13		
+AfterTone Starting up...
+2022-05-28T23h31s20		
+AfterTone Starting up...
+2022-05-28T23h31s20		state change: {self._state} to {new_state}
+Press <r> to record audio. ESC to quit
+(0, 'bcm2835 Headphones: - (hw:0,0)', 0)
+(1, 'UAC 1.0 Microphone: USB Audio (hw:1,0)', 1)
+(2, 'sysdefault', 0)
+(3, 'lavrate', 0)
+(4, 'samplerate', 0)
+(5, 'speexrate', 0)
+(6, 'upmix', 0)
+(7, 'vdownmix', 0)
+(8, 'default', 0)
+(9, 'dmix', 0)
+2022-05-28T23h31s20		setup complete...
+2022-05-28T23h31s20		starting monitoring loop...
+2022-05-28T23h31s20		HEARTBEAT
+2022-05-28T23h31s51		hook state change: on the hook? False
+2022-05-28T23h33s28		
+AfterTone Starting up...
+2022-05-28T23h33s28		state change: {self._state} to {new_state}
+Press <r> to record audio. ESC to quit
+(0, 'bcm2835 Headphones: - (hw:0,0)', 0)
+(1, 'UAC 1.0 Microphone: USB Audio (hw:1,0)', 1)
+(2, 'sysdefault', 0)
+(3, 'lavrate', 0)
+(4, 'samplerate', 0)
+(5, 'speexrate', 0)
+(6, 'upmix', 0)
+(7, 'vdownmix', 0)
+(8, 'default', 0)
+(9, 'dmix', 0)
+2022-05-28T23h33s29		setup complete...
+2022-05-28T23h33s29		starting monitoring loop...
+2022-05-28T23h33s29		HEARTBEAT
+2022-05-28T23h33s46		
+AfterTone Starting up...
+2022-05-28T23h33s46		state change: None to ready
+Press <r> to record audio. ESC to quit
+(0, 'bcm2835 Headphones: - (hw:0,0)', 0)
+(1, 'UAC 1.0 Microphone: USB Audio (hw:1,0)', 1)
+(2, 'sysdefault', 0)
+(3, 'lavrate', 0)
+(4, 'samplerate', 0)
+(5, 'speexrate', 0)
+(6, 'upmix', 0)
+(7, 'vdownmix', 0)
+(8, 'default', 0)
+(9, 'dmix', 0)
+2022-05-28T23h33s46		setup complete...
+2022-05-28T23h33s46		starting monitoring loop...
+2022-05-28T23h33s46		HEARTBEAT
+2022-05-28T23h33s57		hook state change: on the hook? False
+2022-05-28T23h35s46		
+AfterTone Starting up...
+2022-05-28T23h35s46		state change: None to ready
+Press <r> to record audio. ESC to quit
+(0, 'bcm2835 Headphones: - (hw:0,0)', 0)
+(1, 'UAC 1.0 Microphone: USB Audio (hw:1,0)', 1)
+(2, 'sysdefault', 0)
+(3, 'lavrate', 0)
+(4, 'samplerate', 0)
+(5, 'speexrate', 0)
+(6, 'upmix', 0)
+(7, 'vdownmix', 0)
+(8, 'default', 0)
+(9, 'dmix', 0)
+2022-05-28T23h35s46		setup complete...
+2022-05-28T23h35s46		starting monitoring loop...
+2022-05-28T23h35s46		HEARTBEAT
+2022-05-28T23h35s53		hook state change: on the hook? False
+2022-05-28T23h35s53		playing sample.wav
+2022-05-28T23h35s53		state change: ready to playback
+2022-05-28T23h35s59		playback complete
+2022-05-28T23h35s59		state change: playback to ready
+2022-05-28T23h35s59		state change: ready to recording
+2022-05-28T23h36s03		hook state change: on the hook? True
+2022-05-28T23h36s03		on the hook
+2022-05-28T23h36s03		stopping recording...
+2022-05-28T23h36s03		state change: recording to ready
+2022-05-28T23h36s03		recording stopped
+2022-05-28T23h36s03		MESSAGE LEFT: 4 seconds long
+2022-05-28T23h41s55		
+AfterTone Starting up...
+2022-05-28T23h41s55		[state change] None to ready
+Press <r> to record audio. ESC to quit
+(0, 'bcm2835 Headphones: - (hw:0,0)', 0)
+(1, 'UAC 1.0 Microphone: USB Audio (hw:1,0)', 1)
+(2, 'sysdefault', 0)
+(3, 'lavrate', 0)
+(4, 'samplerate', 0)
+(5, 'speexrate', 0)
+(6, 'upmix', 0)
+(7, 'vdownmix', 0)
+(8, 'default', 0)
+(9, 'dmix', 0)
+2022-05-28T23h41s55		setup complete...
+2022-05-28T23h41s55		starting monitoring loop...
+2022-05-28T23h41s55		HEARTBEAT
+2022-05-28T23h42s00		hook state change: on the hook? False
+2022-05-28T23h42s00		playing sample.wav
+2022-05-28T23h42s00		[state change] ready to playback
+2022-05-28T23h42s07		playback complete
+2022-05-28T23h42s07		[state change] playback to ready
+2022-05-28T23h42s07		[state change] ready to recording
+2022-05-28T23h42s10		hook state change: on the hook? True
+2022-05-28T23h42s10		on the hook
+2022-05-28T23h42s10		stopping recording...
+2022-05-28T23h42s10		[state change] recording to ready
+2022-05-28T23h42s10		recording stopped
+2022-05-28T23h42s10		MESSAGE LEFT: 3 seconds long
