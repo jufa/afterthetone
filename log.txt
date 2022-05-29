@@ -1,0 +1,15 @@
+2022-05-28T22h06s49		AfterTone Starting up...
+Press <r> to record audio. ESC to quit
+(0, 'bcm2835 Headphones: - (hw:0,0)', 0)
+(1, 'UAC 1.0 Microphone: USB Audio (hw:1,0)', 1)
+(2, 'sysdefault', 0)
+(3, 'lavrate', 0)
+(4, 'samplerate', 0)
+(5, 'speexrate', 0)
+(6, 'upmix', 0)
+(7, 'vdownmix', 0)
+(8, 'default', 0)
+(9, 'dmix', 0)
+2022-05-28T22h06s50		setup complete...
+2022-05-28T22h06s50		starting monitoring loop...
+2022-05-28T22h06s50		HEARTBEAT
